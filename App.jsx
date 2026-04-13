@@ -1,22 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Visa from "./src/assets/images/Visa.svg";
 
 const App = () => {
   return (
-    <View style={styles.container}>
+    <View style={{flex:1 , justifyContent:"center" , alignItems:"center"}}>
       <Text>App</Text>
-      <Text style={{fontSize:23 , fontFamily:"Poppins-Bold"}}>This is App2</Text>
+      <Visa width={90} height={90}/>
     </View>
   )
 }
 
 export default App
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1 ,
-     justifyContent:"center",
-     alignItems:"center",
-     backgroundColor:"pink"
-  }
-})
+const styles = StyleSheet.create({})
