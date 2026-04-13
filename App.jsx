@@ -1,16 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Visa from "./src/assets/images/Visa.svg";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigation from "./src/navigation/StackNavigation";
 
 const App = () => {
   return (
-    <View style={{flex:1 , justifyContent:"center" , alignItems:"center"}}>
-      <Text>App</Text>
-      <Visa width={90} height={90}/>
-    </View>
-  )
-}
+    <NavigationContainer>
+     <StackNavigation/>
+    </NavigationContainer>
+  );
+};
 
-export default App
-
-const styles = StyleSheet.create({})
+export default App;
