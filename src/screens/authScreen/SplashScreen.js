@@ -1,21 +1,36 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
+import { COLORS } from "../../utils/colors";
+import CustomText from "../../components/CustomText";
+
 
 const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
+
+    console.log(" Splash Started");
+
     const timer = setTimeout(() => {
-      navigation.replace("LoginScreen");
+      navigation.replace( "LoginScreen" , "MainApp");
     }, 2000);
 
-    return  () => clearTimeout(timer);
+    return () => clearTimeout(timer);
 
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Welcome Ettan App </Text>
-    </View>
+    <LinearGradient
+      colors={[COLORS.DarkBlue, COLORS.LightBlue]}
+      style={styles.container}
+    >
+      <StatusBar barStyle="light-content" />
+
+      <CustomText size={6} color="#fff">
+        Welcome Ettan App
+      </CustomText>
+
+    </LinearGradient>
   );
 };
 
@@ -26,11 +41,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6C63FF"
   },
-  text: {
-    color: "#fff",
-    fontSize: 24,
-    fontWeight: "bold"
-  }
 });
