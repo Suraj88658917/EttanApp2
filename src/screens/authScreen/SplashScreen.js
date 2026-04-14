@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, StatusBar , View  } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { COLORS } from "../../utils/colors";
-import CustomText from "../../components/CustomText";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import LottieView from "lottie-react-native";
+import {wp , hp} from "../../utils/responsive";
 
 const SplashScreen = ({ navigation }) => {
 
@@ -37,13 +38,21 @@ const SplashScreen = ({ navigation }) => {
   return (
     <LinearGradient
       colors={[COLORS.DarkBlue, COLORS.LightBlue]}
+       start={{ x: 1, y: 0 }}
+       end={{ x: 0, y: 1 }}
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
 
-      <CustomText size={6} color="#7a4949">
-        Welcome Ettan App
-      </CustomText>
+     <View>
+       <LottieView
+        source={require("../../assets/lottie/splash.json")}
+        autoPlay
+        loop={false}
+        style={{ width: wp("50%"), height: hp("30%") }}
+      />
+     </View>
+
 
     </LinearGradient>
   );
