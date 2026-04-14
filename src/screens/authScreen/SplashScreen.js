@@ -21,7 +21,7 @@ const SplashScreen = ({ navigation }) => {
           if (token) {
             navigation.replace("MainApp"); 
           } else {
-            navigation.replace("LoginScreen"); 
+            navigation.replace("SelectLanguageScreen"); 
           }
         }, 2000);
 
