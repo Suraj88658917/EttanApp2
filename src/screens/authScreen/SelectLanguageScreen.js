@@ -1,147 +1,160 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+import CustomText from "../../components/CustomText";
+import { COLORS } from "../../utils/colors";
+import Aa from "../../assets/images/Aa.svg";
+import Ce from "../../assets/images/Ce.svg";
+import { wp, hp } from "../../utils/responsive";
 
-const data = [
-  { id: '1', symbol: 'Aa', name: 'English' },
-  { id: '2', symbol: 'Cé', name: 'French' },
-];
+const SelectLanguageScreen = ({ navigation }) => {
 
-const Splash01 = ({ navigation }) => {
   const [selectedLang, setSelectedLang] = useState(null);
-
-  const renderItem = ({ item }) => {
-    const isSelected = selectedLang === item.id;
-    return (
-      <TouchableOpacity
-        style={[styles.item, isSelected && styles.selectedItem]}
-        onPress={() => setSelectedLang(item.id)} 
-        activeOpacity={0.8}
-      >
-        <Text style={[styles.symbolText, isSelected && styles.selectedText]}>
-          {item.symbol}
-        </Text>
-
-        <Text style={[styles.langText, isSelected && styles.selectedText]}>
-          {item.name}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
 
   return (
     <View style={styles.container}>
-      
-      <Text style={styles.title}>Select Language</Text>
 
-      <Text style={styles.subtitle}>
+      <CustomText size={7} style={styles.Text}>
+        Select Language
+      </CustomText>
+
+      <CustomText size={3.9} style={styles.Text1}>
         Please select one language to proceed in app
-      </Text>
+      </CustomText>
 
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.listContainer}
-      />
+      <View style={styles.row}>
+
+        <TouchableOpacity
+          style={[
+            styles.card,
+            selectedLang === "en" && styles.selectedCard
+          ]}
+          onPress={() => setSelectedLang("en")}
+        >
+          <Aa width={40} height={25} />
+          <CustomText style={[
+            styles.label,
+            selectedLang === "en" && styles.selectedText
+          ]}>
+            English
+          </CustomText>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.card,
+            selectedLang === "fr" && styles.selectedCard
+          ]}
+          onPress={() => setSelectedLang("fr")}
+        >
+          <Ce width={40} height={25} />
+          <CustomText style={[
+            styles.label,
+            selectedLang === "fr" && styles.selectedText
+          ]}>
+            French
+          </CustomText>
+        </TouchableOpacity>
+
+      </View>
 
       <TouchableOpacity
         style={[
           styles.button,
-          !selectedLang && styles.disabledButton,
+          !selectedLang ? styles.disabledButton : styles.activeButton
         ]}
         disabled={!selectedLang}
-        onPress={() => navigation.navigate('OnboardingScreen')}
+        onPress={() => {
+          if (!selectedLang) return;
+          navigation.replace("OnboardingScreen");
+        }}
       >
-        <Text style={styles.buttonText}>Continue</Text>
+        <CustomText
+          style={[
+            styles.buttonText,
+            selectedLang && styles.activeText
+          ]}
+        >
+          Continue
+        </CustomText>
       </TouchableOpacity>
 
     </View>
-  );
-};
+  )
+}
 
-export default Splash01;
+export default SelectLanguageScreen
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EEF2F5',
-    marginTop:50,
-    paddingHorizontal:20
+    backgroundColor: COLORS.LightBlue,
   },
 
-  title: {
-    fontSize: 26,
-    fontFamily:"Poppins-Bold"
+  Text: {
+    fontFamily: "Poppins-Bold",
+    marginTop: 50,
+    paddingHorizontal: 20
   },
 
-  subtitle: {
-    fontSize: 14,
-    marginTop: 5,
-    color: '#000000',
-    fontFamily:"Poppins-Regular"
+  Text1: {
+    fontFamily: "Poppins-Regular",
+    paddingHorizontal: 20,
+    marginTop: 5
   },
 
-  listContainer: {
+  row: {
+    flexDirection: "row",
     marginTop: 30,
+    paddingHorizontal: 20,
+    justifyContent: "space-between"
   },
 
-  item: {
-    width: 155,
-    height: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#ffffff',
+  card: {
+    backgroundColor: "#fff",
+    width: wp("43%"),
+    height: hp("13%"),
     borderRadius: 10,
-    marginRight: 10,
-    backgroundColor: '#fff',
-    borderWidth:1
-   
+    alignItems: "center",
+    justifyContent: "center",
   },
 
-  selectedItem: {
-    borderColor: '#2061f8',
-    backgroundColor: '#ffffff',
+  selectedCard: {
+    borderWidth: 1,
+    borderColor: "#2c9dff",
+    backgroundColor: "#FFrgb(255, 255, 255)"
   },
 
-  langText: {
-    fontSize: 18,
-    color: '#000',
+  label: {
+    marginTop: 8
   },
 
 
-
-  symbolText: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    color: 'blue',
-  },
 
   button: {
-    backgroundColor: '#ff9b00',
-    paddingVertical: 10,
-    paddingHorizontal: 100,
-    borderRadius: 8,
-    marginBottom:20
-
+    position: "absolute",
+    bottom: 15,
+    left: 20,
+    right: 20,
+    backgroundColor: "#ff9b00",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center"
   },
 
   disabledButton: {
-    backgroundColor: '#ccc',
-    opacity: 0.6,
+    backgroundColor: "#ccc"
   },
 
+  activeButton: {
+  backgroundColor: "#ff9b00", // 
+},
+
+activeText: {
+  color: "#fff", 
+},
+
   buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontFamily:"Poppins-Regular",
-    textAlign:"center"
-  },
+    color: "#000000",
+    fontFamily: "Poppins-Regular"
+  }
 });
