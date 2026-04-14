@@ -3,19 +3,34 @@ import { StyleSheet, StatusBar } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { COLORS } from "../../utils/colors";
 import CustomText from "../../components/CustomText";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
 
-    console.log(" Splash Started");
+    const checkToken = async () => {
+      try {
+        console.log(" Splash Started");
 
-    const timer = setTimeout(() => {
-      navigation.replace( "LoginScreen" , "MainApp");
-    }, 2000);
+        const token = await AsyncStorage.getItem("token");
+        console.log("Token:", token);
 
-    return () => clearTimeout(timer);
+        setTimeout(() => {
+          if (token) {
+            navigation.replace("MainApp"); 
+          } else {
+            navigation.replace("LoginScreen"); 
+          }
+        }, 2000);
+
+      } catch (error) {
+        console.log("Error:", error);
+        navigation.replace("LoginScreen");
+      }
+    };
+
+    checkToken();
 
   }, []);
 
@@ -26,7 +41,7 @@ const SplashScreen = ({ navigation }) => {
     >
       <StatusBar barStyle="light-content" />
 
-      <CustomText size={6} color="#fff">
+      <CustomText size={6} color="#7a4949">
         Welcome Ettan App
       </CustomText>
 
