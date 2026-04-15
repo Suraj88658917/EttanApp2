@@ -12,45 +12,57 @@ import {
 import Logoo from "../../assets/images/Logoo.svg";
 import { COLORS } from "../../utils/colors";
 
-import Part1 from "../../assets/images/part1.svg";
 import Part4 from "../../assets/images/part4.svg";
 import Part5 from "../../assets/images/part5.svg";
 
 const { width } = Dimensions.get("window");
 
-
 const data = [
   {
     id: "1",
-    assets: Part1,
+    type: "image",
+    assets: require("../../assets/images/part1.png"),
     title: "View Your Children’s Progress",
     subtitle:
       "Parents can easily see and manage data for \nboth of their children in one place."
   },
   {
     id: "2",
-    assets: Part4, 
+    type: "svg",
+    assets: Part4,
     title: "Parent & Teacher \nRemarks",
     subtitle:
       "Collect feedback from parents and teachers \nbased on children’s activities and progress."
   },
   {
     id: "3",
-    assets: Part5, 
+    type: "svg",
+    assets: Part5,
     title: "Create Activities, Track Progress",
     subtitle:
       "Teachers can assign activities and easily monitor each child’s learning progress."
   }
 ];
+
 const OnboardingScreen = ({ navigation }) => {
   const flatListRef = useRef();
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  console.log("splash opended")
+
   const renderItem = ({ item }) => {
- 
+
     return (
       <View style={styles.card}>
-       
+         {item.type === "image" ? (
+        <Image
+          source={item.assets}
+          style={{ width: 324, height: 317 }}
+          resizeMode="contain"
+        />
+      ) : (
+        <item.assets width={324} height={317} />
+      )}
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.subtitle}>{item.subtitle}</Text>
       </View>
@@ -63,7 +75,7 @@ const OnboardingScreen = ({ navigation }) => {
         index: currentIndex + 1
       });
     } else {
-      navigation.replace("LoginScreen");
+      navigation.replace("PermissionScreen");
     }
   };
 
