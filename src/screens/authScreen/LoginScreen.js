@@ -1,35 +1,106 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import Button from "../../assets/images/Button.svg";
+import LinearGradient from "react-native-linear-gradient";
+import { COLORS } from '../../utils/colors';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+    <LinearGradient
+      colors={[COLORS.DarkBlue, COLORS.LightBlue]}
+      start={{ x: 1, y: 1 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.container}
+    >
+
+      <Button width={40} height={40} />
+
+      <View style={styles.textContainer}>
+        <View style={{ flexDirection: "row" }}>
+          <Text style={styles.text}>Every</Text>
+          <Text style={[styles.text, styles.highlight]}> small activity </Text>
+        </View>
+
+        <Text style={styles.text}>
+          today builds a better {"\n"}tomorrow for your
+        </Text>
+
+        <Text style={[styles.text, styles.highlight]}>
+          child.
+        </Text>
+      </View>
+
+      <Text style={styles.subtitle}>
+        Sign in to access Parent App
+      </Text>
+
+      <View style={styles.labelRow}>
+        <Text style={{fontFamily:"Poppins-Bold"}}>Email</Text>
+        <Text style={styles.required}>*</Text>
+      </View>
 
       <TextInput
-        placeholder="Email"
+        placeholder='Enter Email'
+        value={name}
+        onChangeText={setName}
         style={styles.input}
-        value={email}
-        onChangeText={setEmail}
       />
 
+      <View style={styles.labelRow}>
+        <Text style={{fontFamily:"Poppins-Bold"}}>Password</Text>
+        <Text style={styles.required}>*</Text>
+      </View>
+
       <TextInput
-        placeholder="Password"
-        style={styles.input}
-        secureTextEntry
+        placeholder='Enter Password'
         value={password}
         onChangeText={setPassword}
+        secureTextEntry
+        style={styles.input}
       />
 
-      <Button title="Login" onPress={() => navigation.replace("MainApp")} />
+      <View style={{ alignItems: "flex-end"  , marginTop:5}}>
+        <TouchableOpacity>
+          <Text style={styles.forgot}>Forgot Password?</Text>
+        </TouchableOpacity>
+      </View>
 
-      <Text onPress={() => navigation.navigate("RegisterScreen")} style={styles.link}>
-        Don't have account? Register
-      </Text>
-    </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.replace("MainApp")}
+          style={styles.loginBtn}
+        >
+          <Text style={styles.loginText}>Login</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.or}>or</Text>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PhoneLogin")}
+          style={styles.phoneBtn}
+        >
+          <Text style={styles.phoneText}>
+            Login with Phone Number
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.signupRow}>
+        <Text style={styles.signupText}>
+          Don’t have an account?
+        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("RegisterScreen")}>
+          <Text style={styles.signupLink}> Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+
+    </LinearGradient>
   );
 };
 
@@ -38,23 +109,104 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 20
+    paddingHorizontal: 20,
+    paddingTop: 40,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: "center"
+
+  textContainer: {
+    marginTop: 30,
   },
+
+  text: {
+    fontFamily: "Poppins-Regular",
+    fontSize: 20,
+    lineHeight: 30,
+    color: "#000",
+  },
+
+  highlight: {
+    color: "#494AE2",
+    fontFamily: "Poppins-Bold"
+  },
+
+  subtitle: {
+    fontFamily: "Poppins-Regular",
+    fontSize: 14,
+    marginTop: 10,
+    
+  },
+
+  labelRow: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+
+  required: {
+    color: "#E02626"
+  },
+
   input: {
-    borderWidth: 1,
-    marginBottom: 10,
-    padding: 10,
-    borderRadius: 5
+    backgroundColor: "#fff",
+    paddingHorizontal: 15,  
+    paddingVertical: 14,
+    borderRadius: 10,
+    marginTop: 8
   },
-  link: {
+
+  forgot: {
+    fontFamily: "Poppins-Regular",
+    fontSize: 13,
+    color: "#0038f0"
+  },
+
+  buttonContainer: {
+    marginTop: 20,
+    alignItems: "center"
+  },
+
+  loginBtn: {
+    backgroundColor: "#E1E1E1",
+    width: "100%",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center"
+  },
+
+  loginText: {
+    color: "#000",
+    fontFamily: "Poppins-Regular"
+  },
+
+  phoneBtn: {
+    backgroundColor: "#fff",
+    width: "100%",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center"
+  },
+
+  phoneText: {
+    fontFamily: "Poppins-Regular"
+  },
+
+  or: {
+    textAlign: "center",
     marginTop: 15,
-    color: "blue",
-    textAlign: "center"
+    color: "#999"
+  },
+
+  signupRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 20
+  },
+
+  signupText: {
+    fontFamily: "Poppins-Regular"
+  },
+
+  signupLink: {
+    color: "#2c20ff",
+    fontFamily: "Poppins-Regular"
   }
 });
