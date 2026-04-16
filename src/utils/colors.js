@@ -8,5 +8,6 @@ export const COLORS = {
   LightBlue : "#EEF2F5",
   orange:"#ff9b00",
   DarkParpal:"#494AE2",
-  DarkLight:"#c0c0ff"
+  DarkLight:"#c0c0ff",
+  lightWight:"#EEF2F5"
 };

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity , ScrollView , Platform , KeyboardAvoidingView } from 'react-native';
 import React, { useState } from 'react';
 import Button from "../../assets/images/Button.svg";
 import LinearGradient from "react-native-linear-gradient";
@@ -16,6 +16,15 @@ const LoginScreen = ({ navigation }) => {
       end={{ x: 0, y: 1 }}
       style={styles.container}
     >
+
+       <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    style={styles.container1}>
+            
+                    <ScrollView
+                      contentContainerStyle={{ flexGrow: 1 }}
+                      showsVerticalScrollIndicator={false}
+                    >
 
       <View style={styles.header}>
         <TouchableOpacity
@@ -97,7 +106,7 @@ const LoginScreen = ({ navigation }) => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("PhoneLogin")}
+          onPress={() => navigation.navigate("OTPScreen")}
           style={styles.phoneBtn}
         >
           <Text style={styles.phoneText}>
@@ -114,7 +123,8 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.signupLink}> Sign Up</Text>
         </TouchableOpacity>
       </View>
-
+ </ScrollView>
+      </KeyboardAvoidingView>
     </LinearGradient>
   );
 };
@@ -126,6 +136,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 40,
+  },
+   container1: {
+    flex: 1,
+   
   },
 
   textContainer: {
