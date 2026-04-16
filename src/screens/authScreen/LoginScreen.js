@@ -17,7 +17,19 @@ const LoginScreen = ({ navigation }) => {
       style={styles.container}
     >
 
-      <Button width={40} height={40} />
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => {
+            if (navigation.canGoBack()) {
+              navigation.goBack();
+            } else {
+              navigation.navigate("SplashScreen");
+            }
+          }}
+        >
+          <Button width={40} height={40} />
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.textContainer}>
         <View style={{ flexDirection: "row" }}>
@@ -26,12 +38,14 @@ const LoginScreen = ({ navigation }) => {
         </View>
 
         <Text style={styles.text}>
-          today builds a better {"\n"}tomorrow for your
+          today builds a better
         </Text>
 
-        <Text style={[styles.text, styles.highlight]}>
-          child.
-        </Text>
+        <View style={{ flexDirection: "row" }}>
+          <Text style={styles.text}>tomorrow for your</Text>
+          <Text style={[styles.text, styles.highlight]}> child. </Text>
+        </View>
+
       </View>
 
       <Text style={styles.subtitle}>
@@ -39,7 +53,7 @@ const LoginScreen = ({ navigation }) => {
       </Text>
 
       <View style={styles.labelRow}>
-        <Text style={{fontFamily:"Poppins-Bold"}}>Email</Text>
+        <Text style={{ fontFamily: "Poppins-Bold" }}>Email</Text>
         <Text style={styles.required}>*</Text>
       </View>
 
@@ -51,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
       />
 
       <View style={styles.labelRow}>
-        <Text style={{fontFamily:"Poppins-Bold"}}>Password</Text>
+        <Text style={{ fontFamily: "Poppins-Bold" }}>Password</Text>
         <Text style={styles.required}>*</Text>
       </View>
 
@@ -63,8 +77,9 @@ const LoginScreen = ({ navigation }) => {
         style={styles.input}
       />
 
-      <View style={{ alignItems: "flex-end"  , marginTop:5}}>
-        <TouchableOpacity>
+      <View style={{ alignItems: "flex-end", marginTop: 5 }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ForgotScreen")}>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
@@ -133,7 +148,7 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Regular",
     fontSize: 14,
     marginTop: 10,
-    
+
   },
 
   labelRow: {
@@ -147,7 +162,7 @@ const styles = StyleSheet.create({
 
   input: {
     backgroundColor: "#fff",
-    paddingHorizontal: 15,  
+    paddingHorizontal: 15,
     paddingVertical: 14,
     borderRadius: 10,
     marginTop: 8
@@ -160,7 +175,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 30,
     alignItems: "center"
   },
 
@@ -198,7 +213,7 @@ const styles = StyleSheet.create({
   signupRow: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 20
+    marginTop: 30
   },
 
   signupText: {

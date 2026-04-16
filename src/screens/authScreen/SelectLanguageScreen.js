@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
   Text1: {
     fontFamily: "Poppins-Regular",
     paddingHorizontal: 20,
-    marginTop: 5
   },
 
   row: {
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
   selectedCard: {
     borderWidth: 1,
     borderColor: "#2c9dff",
-    backgroundColor: "#FFrgb(255, 255, 255)"
+    backgroundColor: "#EEF5FF"
   },
 
   label: {

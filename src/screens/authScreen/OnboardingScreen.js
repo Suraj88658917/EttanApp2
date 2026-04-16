@@ -85,7 +85,7 @@ const OnboardingScreen = ({ navigation }) => {
       <View style={styles.header}>
         <Logoo width={107} height={34.5} />
 
-        <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>
+        <TouchableOpacity onPress={() => navigation.replace("PermissionScreen")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>
