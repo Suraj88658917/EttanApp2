@@ -73,7 +73,8 @@ const ForgotScreen = ({ navigation }) => {
       <View style={styles.textContainer}>
         <Text style={styles.title}>Forgot Password</Text>
         <Text style={styles.desc}>
-          Enter your phone number to receive OTP
+          Enter your registered email or phone number to
+receive a reset link/OTP
         </Text>
       </View>
 
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     paddingHorizontal: 20,
-    marginTop: 140
+    marginTop: 120
   },
 
   btn: {

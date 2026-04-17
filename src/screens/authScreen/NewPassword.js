@@ -58,7 +58,7 @@ const NewPassword = ({ navigation }) => {
           </View>
 
           {/* Image */}
-          <View style={{ marginTop: 30, alignItems: "center" }}>
+          <View style={{ marginTop: 30 }}>
             <Image
               style={{ width: 200, height: 200 }}
               source={require("../../assets/images/Girl.gif")}

@@ -12,6 +12,7 @@ import ForgotScreen from "../screens/authScreen/ForgotScreen";
 import NewPassword from "../screens/authScreen/NewPassword";
 import OTPScreen from "../screens/authScreen/OTPScreen";
 import OTPVerify from "../screens/authScreen/OTPVerify";
+import OTPScreen2 from "../screens/authScreen/OTPScreen2";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const RootNavigator = () => {
       <Stack.Screen name="OTPScreen" component={OTPScreen} />
 
       <Stack.Screen name="OTPVerify" component={OTPVerify} />
+       <Stack.Screen name="OTPScreen2" component={OTPScreen2} />
 
       <Stack.Screen name="MainApp" component={TabNavigation} />
 
